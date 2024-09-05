@@ -2,20 +2,16 @@ const { aluguel } = require('../data')
 
 const deletarAluguel = (req,res) =>{
     const { id } = req.params
-    const { idLivro } = req.params
-    const { idEstudante } = req.params
-    const index = aluguel.findIndex((f) => f.id == id)
+
+    const index = aluguel.findIndex(a => a.id === Number(id))
 
     if(index === -1){
-        return res.status(404).send('Aluguel não encontrado')
+        return res.status(404).send('ID doAluguel não encontrado!')
     }
 
-    const aluguelDeletado = aluguel.splice(index, 1) [0]
+    aluguel.splice(index, 1) [0]
 
-    res.status(200).send({
-        message: 'Aluguel deletado com sucesso',
-        aluguel: aluguelDeletado
-    })
+    res.status(200).send('Aluguel deletado com sucesso')
 }
 
 module.exports = deletarAluguel
